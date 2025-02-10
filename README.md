@@ -39,24 +39,13 @@ Antes de executar o dashboard, assegure-se de que você possui as seguintes depe
     pip install -r requirements.txt
     ```
 
-O arquivo `requirements.txt` deve conter as seguintes bibliotecas:
-
-- `streamlit`
-- `pandas`
-- `numpy`
-- `scipy`
-- `matplotlib`
-- `plotly`
-- `seaborn`
-- `scikit-learn`
-- `Pillow`
-
 ### Executando o Dashboard
 
 Após instalar as dependências, execute o dashboard com o seguinte comando:
 
 ```bash
 streamlit run dashboard.py
+```
 
 O dashboard será iniciado e estará disponível no seu navegador no endereço: http://localhost:8501.
 
