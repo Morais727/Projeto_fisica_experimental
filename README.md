@@ -62,7 +62,7 @@ Correlação com Lag: Gera gráficos de comparação temporal com defasagem entr
 Visualizar Fotos: Permite visualizar fotos do experimento com base na data e hora selecionadas.
 Informações Relevantes: Exibe detalhes sobre os sensores e informações sobre o experimento.
 Dados Utilizados
-Os dados utilizados no dashboard são carregados a partir de arquivos CSV, que podem ser locais ou obtidos via URL de uma planilha do Google Sheets. O código também integra dados meteorológicos do INMET, enriquecendo a análise com informações adicionais.
+Os dados utilizados no dashboard são carregados a partir de arquivos CSV, que podem ser locais ou obtidos via URL de uma planilha do Google Sheets. O código também integra dados meteorológicos do [INMET](https://portal.inmet.gov.br/), enriquecendo a análise com informações adicionais.
 
 Personalização
 Você pode personalizar o dashboard para carregar diferentes conjuntos de dados ou ajustar suas funcionalidades conforme necessário. Para isso, basta modificar o código para carregar os dados desejados e ajustar as funções de análise e visualização de acordo com os novos dados.
