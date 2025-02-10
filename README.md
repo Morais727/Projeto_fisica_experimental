@@ -64,16 +64,16 @@ Informações Relevantes: Exibe detalhes sobre os sensores e informações sobre
 Dados Utilizados
 Os dados utilizados no dashboard são carregados a partir de arquivos CSV, que podem ser locais ou obtidos via URL de uma planilha do Google Sheets. O código também integra dados meteorológicos do [INMET](https://portal.inmet.gov.br/), enriquecendo a análise com informações adicionais.
 
-Personalização
+### Personalização
 Você pode personalizar o dashboard para carregar diferentes conjuntos de dados ou ajustar suas funcionalidades conforme necessário. Para isso, basta modificar o código para carregar os dados desejados e ajustar as funções de análise e visualização de acordo com os novos dados.
 
-Contribuição
+### Contribuição
 Contribuições são bem-vindas! Se você deseja contribuir para o projeto, sinta-se à vontade para abrir issues ou enviar pull requests. A colaboração é fundamental para o crescimento do projeto.
 
-Licença
+### Licença
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
 
-Desenvolvimento Acadêmico
-Este projeto foi desenvolvido como parte da disciplina Projetos de Física Experimental I da UFLA (Universidade Federal de Lavras) no ano de 2024/2.
+### Desenvolvimento Acadêmico
+Este projeto foi desenvolvido como parte da disciplina Projetos de Física Experimental I da [UFLA](https://ufla.br/) (Universidade Federal de Lavras) no ano de 2024/2.
 
 Esperamos que este dashboard seja útil para a análise de seus experimentos físicos. Se tiver dúvidas ou sugestões, não hesite em entrar em contato!
