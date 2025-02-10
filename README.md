@@ -52,15 +52,38 @@ O dashboard será iniciado e estará disponível no seu navegador no endereço: 
 Estrutura do Projeto
 O dashboard oferece diversas funcionalidades, acessíveis através da barra lateral:
 
-Página Inicial: Exibe uma tabela com a variação diária dos dados, gráficos não interativos e um mapa de calor da correlação entre os sensores.
-Gráfico Interativo: Visualize gráficos interativos dos dados ao longo do tempo.
-Time-Lapse: Exibe vídeos time-lapse dos experimentos.
-Médias Diárias: Calcula e exibe as médias diárias dos dados selecionados.
-Regressão Linear: Realiza análises de regressão linear entre pares de sensores.
-Eventos Combinados: Detecta e exibe picos simultâneos em diferentes sensores.
-Correlação com Lag: Gera gráficos de comparação temporal com defasagem entre sensores.
-Visualizar Fotos: Permite visualizar fotos do experimento com base na data e hora selecionadas.
-Informações Relevantes: Exibe detalhes sobre os sensores e informações sobre o experimento.
+```plaintext
+Dashboard de Análise de Dados de Experimentos Físicos
+├── Página Inicial
+│   ├── Tabela com a variação diária dos dados
+│   ├── Gráficos não interativos
+│   └── Mapa de calor da correlação entre os sensores
+│
+├── Gráfico Interativo
+│   └── Visualização interativa dos dados ao longo do tempo
+│
+├── Time-Lapse
+│   └── Exibição de vídeos time-lapse dos experimentos
+│
+├── Médias Diárias
+│   └── Cálculo e exibição das médias diárias dos dados selecionados
+│
+├── Regressão Linear
+│   └── Análises de regressão linear entre pares de sensores
+│
+├── Eventos Combinados
+│   └── Detecção de picos simultâneos em diferentes sensores
+│
+├── Correlação com Lag
+│   └── Gráficos de comparação temporal com defasagem entre sensores
+│
+├── Visualizar Fotos
+│   └── Visualização de fotos do experimento com base na data e hora selecionadas
+│
+└── Informações Relevantes
+    └── Detalhes sobre os sensores e informações sobre o experimento
+```
+    
 Dados Utilizados
 Os dados utilizados no dashboard são carregados a partir de arquivos CSV, que podem ser locais ou obtidos via URL de uma planilha do Google Sheets. O código também integra dados meteorológicos do [INMET](https://portal.inmet.gov.br/), enriquecendo a análise com informações adicionais.
 
