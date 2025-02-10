@@ -57,7 +57,6 @@ Após instalar as dependências, execute o dashboard com o seguinte comando:
 
 ```bash
 streamlit run dashboard.py
-Substitua dashboard.py pelo nome do arquivo Python que contém o código do dashboard.
 
 O dashboard será iniciado e estará disponível no seu navegador no endereço: http://localhost:8501.
 
