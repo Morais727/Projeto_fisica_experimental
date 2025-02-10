@@ -1,50 +1,61 @@
-Dashboard de Análise de Dados de Experimentos Físicos
-Este projeto é um dashboard interativo desenvolvido em Python utilizando a biblioteca Streamlit, projetado para a análise de dados coletados de sensores físicos. O dashboard oferece visualizações interativas e avançadas para análise de dados como temperatura, umidade, gases, entre outros, além de gerar gráficos interativos, mapas de calor, análises de regressão linear e muito mais.
+# Dashboard de Análise de Dados de Experimentos Físicos
 
-Como Executar o Dashboard
-Pré-requisitos
+Este projeto é um **dashboard interativo** desenvolvido em **Python** utilizando a biblioteca **Streamlit**, projetado para a análise de dados coletados de **sensores físicos**. O dashboard oferece visualizações interativas e avançadas para análise de dados como **temperatura**, **umidade**, **gases**, entre outros, além de gerar gráficos interativos, mapas de calor, análises de regressão linear e muito mais.
+
+## Relatório do Experimento
+
+O relatório completo do experimento pode ser encontrado no seguinte link:
+
+[Relatório do Experimento](https://projetosfisicaexperimental.blogspot.com/2025/02/freshness-de-alimentos-pereciveis_10.html)
+
+## Como Executar o Dashboard
+
+### Pré-requisitos
+
 Antes de executar o dashboard, assegure-se de que você possui as seguintes dependências instaladas:
 
-Python 3.8 ou superior
-Pip (gerenciador de pacotes do Python)
-Instalação das Dependências
-Clone o repositório para o seu ambiente local:
+- **Python 3.8** ou superior
+- **Pip** (gerenciador de pacotes do Python)
 
-bash
-Copiar
-Editar
-git clone https://github.com/Morais727/Projeto_fisica_experimental.git
-cd Projeto_fisica_experimental
-Crie um ambiente virtual (opcional, mas recomendado):
+### Instalação das Dependências
 
-bash
-Copiar
-Editar
-python -m venv venv
-source venv/bin/activate  # No Windows use venv\Scripts\activate
-Instale as dependências necessárias:
+1. **Clone o repositório** para o seu ambiente local:
 
-bash
-Copiar
-Editar
-pip install -r requirements.txt
-O arquivo requirements.txt deve conter as seguintes bibliotecas:
+    ```bash
+    git clone https://github.com/Morais727/Projeto_fisica_experimental.git
+    cd Projeto_fisica_experimental
+    ```
 
-streamlit
-pandas
-numpy
-scipy
-matplotlib
-plotly
-seaborn
-scikit-learn
-Pillow
-Executando o Dashboard
+2. **Crie um ambiente virtual** (opcional, mas recomendado):
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # No Windows use venv\Scripts\activate
+    ```
+
+3. **Instale as dependências necessárias**:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+O arquivo `requirements.txt` deve conter as seguintes bibliotecas:
+
+- `streamlit`
+- `pandas`
+- `numpy`
+- `scipy`
+- `matplotlib`
+- `plotly`
+- `seaborn`
+- `scikit-learn`
+- `Pillow`
+
+### Executando o Dashboard
+
 Após instalar as dependências, execute o dashboard com o seguinte comando:
 
-bash
-Copiar
-Editar
+```bash
 streamlit run dashboard.py
 Substitua dashboard.py pelo nome do arquivo Python que contém o código do dashboard.
 
@@ -73,5 +84,8 @@ Contribuições são bem-vindas! Se você deseja contribuir para o projeto, sint
 
 Licença
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+
+Desenvolvimento Acadêmico
+Este projeto foi desenvolvido como parte da disciplina Projetos de Física Experimental I da UFLA (Universidade Federal de Lavras) no ano de 2024/2.
 
 Esperamos que este dashboard seja útil para a análise de seus experimentos físicos. Se tiver dúvidas ou sugestões, não hesite em entrar em contato!
