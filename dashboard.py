@@ -1,9 +1,10 @@
 import streamlit as st
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
-
+from statsmodels.tsa.stattools import grangercausalitytests
 import pandas as pd
 import numpy as np
+import networkx as nx
 from scipy.signal import find_peaks
 import matplotlib.pyplot as plt 
 import plotly.graph_objects as go
@@ -516,63 +517,6 @@ def detectar_picos_simultaneos(dados_filtrados, colunas_selecionadas):
         # Exibir o gráfico no Streamlit
         st.plotly_chart(fig, use_container_width=True)
 
-def grafico_com_defasagem_para_combinacoes(dados, colunas_selecionadas, lag=1):
-    """
-    Gera gráficos interativos de comparação temporal para combinações de sensores com defasagem.
-
-    Args:
-        dados (DataFrame): DataFrame com os dados.
-        colunas_selecionadas (list): Lista de colunas selecionadas para análise.
-        lag (int): Número de períodos de defasagem.
-    """
-    # Gerar todas as combinações possíveis entre os sensores
-    combinacoes = list(combinations(colunas_selecionadas, 2))
-    
-    for sensor_1, sensor_2 in combinacoes:
-        # Criar a coluna temporária com o dado defasado
-        dados[f'{sensor_1}_lag'] = dados[sensor_1].shift(lag)
-        
-        # Criar o gráfico interativo com Plotly
-        fig = go.Figure()
-
-        # Adicionar os valores defasados
-        fig.add_trace(
-            go.Scatter(
-                x=dados['HorasDecorridas'],
-                y=dados[f'{sensor_1}_lag'],
-                mode='lines',
-                name=f'{sensor_1} (com lag={lag})',
-                line=dict(color='blue', dash='dash')  # Linha tracejada para diferenciar
-            )
-        )
-
-        # Adicionar os valores originais do segundo sensor
-        fig.add_trace(
-            go.Scatter(
-                x=dados['HorasDecorridas'],
-                y=dados[sensor_2],
-                mode='lines',
-                name=sensor_2,
-                line=dict(color='green')
-            )
-        )
-
-        # Configuração do layout
-        fig.update_layout(
-            title=f"Comparação Temporal: {sensor_1} com Lag {lag} e {sensor_2}",
-            xaxis_title="Horas Decorridas",
-            yaxis_title="Valores",
-            legend_title="Sensores",
-            hovermode="x unified",
-            template="plotly_white"
-        )
-
-        # Exibir o gráfico no Streamlit
-        st.plotly_chart(fig, use_container_width=True)
-        
-        # Remover a coluna temporária para não alterar o DataFrame original
-        dados.drop(columns=[f'{sensor_1}_lag'], inplace=True)
-
 def normalizar_dados(dados, colunas_selecionadas):
     # Inicializando o escalonador
     scaler = MinMaxScaler()
@@ -582,9 +526,51 @@ def normalizar_dados(dados, colunas_selecionadas):
 
     return dados
 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def analisar_causalidade_granger(dados, sensores):
+    st.subheader("Análise de Causalidade de Granger")
+    
+    # Selecionar apenas os sensores para análise
+    df_sensores = dados[sensores]
+    
+    # Criar um dicionário para armazenar os atrasos temporais mais relevantes
+    lag_results = {}
+    
+    # Testar causalidade de Granger para diferentes pares de sensores
+    for sensor_1 in df_sensores.columns:
+        for sensor_2 in df_sensores.columns:
+            if sensor_1 != sensor_2:
+                try:
+                    result = grangercausalitytests(df_sensores[[sensor_1, sensor_2]].dropna(), maxlag=5, verbose=False)
+                    best_lag = min(result.keys(), key=lambda x: result[x][0]['ssr_chi2test'][1])  # Melhor lag baseado no p-valor
+                    lag_results[(sensor_1, sensor_2)] = best_lag
+                except Exception as e:
+                    st.warning(f"Erro ao processar {sensor_1} -> {sensor_2}: {e}")
+    
+    # Criar um DataFrame para exibir os resultados
+    df_lags = pd.DataFrame(lag_results.items(), columns=["Relação", "Melhor Lag (Horas)"])
+    
+    # Exibir os resultados
+    st.write("Tabela de atrasos entre sensores:")
+    st.dataframe(df_lags)
+    
+    # Adicionar o gráfico de calor (heatmap)
+    st.write("Gráfico de Correlação entre Sensores")
+    
+    # Calcular a correlação entre os sensores
+    correlacao = df_sensores.corr()
+    
+    # Plotar o gráfico de calor
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(correlacao, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
+    st.pyplot(plt)
+
+
 def main():
     try:
-         # Seleção do experimento
+        # Seleção do experimento
         experimento = st.sidebar.radio("Selecione o experimento:", ["Experimento 1", "Experimento 2"])
         
         if experimento == "Experimento 1":
@@ -614,7 +600,6 @@ def main():
         dados_inmet = carregar_dados_inmet()
         dados = mesclar_temperatura(dados_experimento, dados_inmet)
         dados = normalizar_dados(dados, ['Temperatura', 'Umidade', 'MQ-3', 'MQ-4', 'MQ-7', 'MQ-8', 'MQ-135','Temperatura_Externa'])
-
         
         st.sidebar.title("Navegação")
         pagina = st.sidebar.radio("Escolha a página:", [
@@ -649,21 +634,9 @@ def main():
             elif pagina == "Gráfico Interativo":
                 st.title("Gráfico Interativo")
                 exibir_graficos_interativos(dados_filtrados, colunas_selecionadas, medias_removidos)
-            elif pagina == "Time-Lapse":
-                st.title("Time-Lapse")                 
-                # Configuração dos arquivos de vídeo
-                if verifica:
-                    caminhos = ['up','down']
-                    for i in caminhos:
-                        input_video = f"midia/concave_{i}_timelapse.mp4"
-                        output_video = f"midia/concave_{i}_output.mp4"                              
-                        verificar_video(input_video, output_video)
-                else:
-                    input_video = "midia/EXP_2_timelapse.mp4"
-                    output_video = "midia/EXP_2_timelapse_output.mp4"                           
-                    verificar_video(input_video, output_video)
-                    
-            elif pagina ==  "Médias Diárias":
+            elif pagina == "Correlacao com Lag":
+                analisar_causalidade_granger(dados_filtrados, ['MQ-3', 'MQ-4', 'MQ-7', 'MQ-8', 'MQ-135'])
+            elif pagina == "Médias Diárias":
                 exibir_medias_diarias(dados_filtrados, colunas_selecionadas)
             elif pagina == "Visualizar Fotos":
                 exibir_imagens_experimento(diretorio_imagens,data_inicial,data_final,hora_inicial,hora_final)
@@ -673,8 +646,6 @@ def main():
                 analisar_regressoes(dados_filtrados, colunas_selecionadas)
             elif pagina == "Eventos Combinados":
                 detectar_picos_simultaneos(dados_filtrados, colunas_selecionadas)
-            elif pagina == "Correlacao com Lag":
-                grafico_com_defasagem_para_combinacoes(dados_filtrados, colunas_selecionadas)
 
     except Exception as e:
         st.error(f"Erro ao carregar os dados: {e}")

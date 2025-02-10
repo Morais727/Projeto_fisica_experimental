@@ -1,0 +1,55 @@
+.
+├── ajuste_csv.py
+├── busca_imagens_unicas.py
+├── compara_exemplo.py
+├── dados_antigos
+│   ├── 28_12_24.csv
+│   ├── 29_12_24.csv
+│   ├── 30_12_24.csv
+│   ├── dados_arduino.csv
+│   └── valores_base.csv
+├── dashboard.py
+├── data
+│   ├── dados_experimento.csv
+│   ├── EXPERIMENTO_1_FISICA_Dados.csv
+│   ├── EXPERIMENTO_2_FISICA_Dados.csv
+│   ├── EXPERIMENTO_FISICA_Dados_brutos.csv
+│   └── inmet_dados.csv
+├── diagrama_circuito.png
+├── diagrama_circuito.svg
+├── envia_dados.py
+├── esquema_eletrico.py
+├── EXP_FISICA_imagens_brutas
+│   ├── EXPERIMENTO_1_FISICA
+│   └── EXPERIMENTO_2_FISICA
+├── EXP_FISICA_imagens_experimento
+├── license.txt
+├── midia
+│   ├── concave_down_output.mp4
+│   ├── concave_down_timelapse.mp4
+│   ├── concave_up_output.mp4
+│   ├── concave_up_timelapse.mp4
+│   ├── EXP_2_timelapse.mp4
+│   └── EXP_2_timelapse_output.mp4
+├── mover_fotos.py
+├── output_folder
+│   ├── concave_down
+│   └── concave_up
+├── papers
+│   ├── An_Intelligent_Approach_to_Determine_Banana_Ripeness_Stages_using_Deep_Learning_Models.pdf
+│   ├── Classifying_Healthy_and_Defective_Fruits_with_a_Multi-Input_Architecture_and_CNN_Models.pdf
+│   ├── Comparison_of_Machine_Learning_Techniques_for_Grade_Classification_of_Exported_Cavendish_Bananas.pdf
+│   ├── Identification_of_Banana_Ripeness_using_Convolutional_Neural_Network_Approaches.pdf
+│   ├── processes-12-00799.pdf
+│   ├── processes-12-00799-with-cover.pdf
+│   ├── Projeto_de_Física_Experimental.pdf
+│   ├── Real-Time_Banana_Ripeness_Detection_and_Classification_using_YOLOv8.pdf
+│   ├── Ripeness_Classification_of_Cavendish_Bananas_using_Multi-object_Detection_Approach.pdf
+│   └── UFLA___Relatorio_GFI130_Projeto_Física_Experimental_I.pdf
+├── salva_dados_csv.py
+├── similar_images
+├── tree_structure.txt
+├── yolo.py
+└── yolov8n.pt
+
+15 directories, 16509 files
